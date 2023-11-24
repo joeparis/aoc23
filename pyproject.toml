@@ -1,4 +1,15 @@
-
 [tool.ruff]
 line-length = 120
 target-version = "py311"
+extend-exclude = ["*.ipynb"]
+
+# https://www.kdnuggets.com/enhance-your-python-coding-style-with-ruff
+
+# [lint]
+# extend-select = [
+#   "UP",  # pyupgrade
+#   "D",   # pydocstyle
+# ]
+
+# [lint.pydocstyle]
+# convention = "google"
