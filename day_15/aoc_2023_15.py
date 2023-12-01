@@ -3,7 +3,7 @@
 
 from pathlib import Path
 
-from aocd import data
+from aocd import data  # https://pypi.org/project/advent-of-code-data/
 from dotenv import load_dotenv
 
 
@@ -13,14 +13,16 @@ def setup() -> None:
             in_file.write(data)
 
 
-def part_1():
+def solve_part_one() -> None:
     pass
 
 
-def part_2():
+def solve_part_two() -> None:
     pass
 
 
 if __name__ == "__main__":
     load_dotenv()
-    print(data)
+    setup()
+    solve_part_one()
+    # solve_part_two()
