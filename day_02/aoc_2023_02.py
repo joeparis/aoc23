@@ -14,26 +14,25 @@ def setup() -> None:
             in_file.write(data)
 
 
-def solve_part_one(file: str) -> None:
+def solve(file: str) -> None:
     with Path(file).open(mode="r", encoding="UTF-8") as in_file:
         games = in_file.readlines()
 
-    bag = {"red": 12, "green": 13, "blue": 14}
     total = 0
-    possible = True
+
+    bag = {"red": 12, "green": 13, "blue": 14}
+    patterns = {color: re.compile(rf"(\d*) (?={color})") for color in bag}
 
     for game in games:
-        for color in bag:
-            pattern = re.compile(rf"(\d*) (?={color})")
-            for count in pattern.findall(game):
-                if int(count) > bag[color]:
-                    possible = False
+        results = {color: [int(res) for res in patterns[color].findall(game)] for color in bag}
+        if (
+            all(map(lambda x: x <= bag["red"], results["red"]))
+            and all(map(lambda x: x <= bag["green"], results["green"]))
+            and all(map(lambda x: x <= bag["blue"], results["blue"]))
+        ):
+            total += int(re.search(r"Game (\d*)", game).group(1))
 
-        if possible:
-            total += int(game.split(":")[0].split()[-1])
-        possible = True
-
-    print(total)
+    print(f"Sum of IDs: {total}")  # 2528
 
 
 def solve_part_two(file: str) -> None:
@@ -45,6 +44,6 @@ if __name__ == "__main__":
     load_dotenv()
     setup()
     # solve_part_one("test_data_01.txt")
-    solve_part_one("input.txt")
+    solve("input.txt")
     # solve_part_two("test_data_02.txt")
     # solve_part_two("input.txt")
