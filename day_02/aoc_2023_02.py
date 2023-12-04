@@ -19,6 +19,7 @@ def solve(file: str) -> None:
         games = in_file.readlines()
 
     total = 0
+    power_total = 0
 
     bag = {"red": 12, "green": 13, "blue": 14}
     patterns = {color: re.compile(rf"(\d*) (?={color})") for color in bag}
@@ -32,7 +33,10 @@ def solve(file: str) -> None:
         ):
             total += int(re.search(r"Game (\d*)", game).group(1))
 
+        power_total += max(results["red"]) * max(results["green"]) * max(results["blue"])
+
     print(f"Sum of IDs: {total}")  # 2528
+    print(f"Sum of powers: {power_total}")  #
 
 
 if __name__ == "__main__":
