@@ -35,15 +35,8 @@ def solve(file: str) -> None:
     print(f"Sum of IDs: {total}")  # 2528
 
 
-def solve_part_two(file: str) -> None:
-    with Path(file).open(mode="r", encoding="utf-8") as infile:
-        inputs = infile.readlines()
-
-
 if __name__ == "__main__":
     load_dotenv()
     setup()
-    # solve_part_one("test_data_01.txt")
+    # solve("test_data_01.txt")
     solve("input.txt")
-    # solve_part_two("test_data_02.txt")
-    # solve_part_two("input.txt")
